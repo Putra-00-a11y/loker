@@ -214,12 +214,6 @@
       </div>
 
       <div>
-        <label for="cvUpload">Upload CV (PDF/DOC)</label>
-        <input type="file" id="cvUpload" name="cvUpload" accept=".pdf,.doc,.docx" required />
-        <div class="error" id="errCV"></div>
-      </div>
-
-      <div>
         <label for="fotoWajah">Unggah Foto Wajah (JPG/PNG)</label>
         <input type="file" id="fotoWajah" name="fotoWajah" accept="image/jpeg, image/png" required />
         <div class="error" id="errFoto"></div>
@@ -236,7 +230,7 @@
       e.preventDefault();
 
       // Clear previous errors
-      ['errNama', 'errTempatLahir', 'errTglLahir', 'errJK', 'errStatusNikah', 'errNoHP', 'errNoDarurat', 'errEmail', 'errAgama', 'errPendidikan', 'errAlamat', 'errFoto', 'errCV'].forEach(id => {
+      ['errNama', 'errTempatLahir', 'errTglLahir', 'errJK', 'errStatusNikah', 'errNoHP', 'errNoDarurat', 'errEmail', 'errAgama', 'errPendidikan', 'errAlamat', 'errFoto'].forEach(id => {
         document.getElementById(id).textContent = '';
       });
 
@@ -288,19 +282,6 @@
         valid = false;
       }
 
-      // Validasi file CV
-      if (!form.cvUpload.files.length) {
-        document.getElementById('errCV').textContent = 'Upload CV wajib';
-        valid = false;
-      } else {
-        const cvFile = form.cvUpload.files[0];
-        const allowedCV = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-        if (!allowedCV.includes(cvFile.type)) {
-          document.getElementById('errCV').textContent = 'Format CV harus PDF atau DOC/DOCX';
-          valid = false;
-        }
-      }
-
       // Validasi foto wajah
       if (!form.fotoWajah.files.length) {
         document.getElementById('errFoto').textContent = 'Upload foto wajib';
@@ -328,7 +309,7 @@
 
         if (!response.ok) throw new Error('Gagal kirim data!');
 
-        alert('Pendaftaran berhasil dikirim!');
+        alert('Pendaftaran berhasil dikirim!, Tunggu hasil seleksi yang akan diumumkan!');
         form.reset();
       } catch (err) {
         alert('Error: ' + err.message);
