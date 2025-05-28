@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Form Pendaftaran Lowongan Kerja</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      max-width: 600px;
+      width: 100%;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #334e68;
+      font-weight: 700;
+      font-size: 28px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    label {
+      font-weight: 600;
+      color: #102a43;
+      margin-bottom: 6px;
+      display: block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.8px solid #bcccdc;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #334e68;
+      transition: border-color 0.3s;
+      resize: vertical;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="date"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #3b82f6;
+      outline: none;
+      box-shadow: 0 0 5px rgba(59,130,246,0.5);
+    }
+    input[type="file"] {
+      font-size: 16px;
+      color: #334e68;
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-top: 6px;
+    }
+    .radio-group label {
+      font-weight: normal;
+      color: #334e68;
+      cursor: pointer;
+    }
+    .error {
+      color: #d9534f;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    button {
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      color: white;
+      font-weight: 700;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #2563eb, #1e40af);
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Form Pendaftaran Lowongan Kerja</h1>
+    <form id="lokerForm" enctype="multipart/form-data" novalidate>
+      <div>
+        <label for="namaLengkap">Nama Lengkap</label>
+        <input type="text" id="namaLengkap" name="namaLengkap" placeholder="Masukkan nama lengkap" required />
+        <div class="error" id="errNama"></div>
+      </div>
+
+      <div>
+        <label for="tempatLahir">Tempat Lahir</label>
+        <input type="text" id="tempatLahir" name="tempatLahir" placeholder="Masukkan tempat lahir" required />
+        <div class="error" id="errTempatLahir"></div>
+      </div>
+
+      <div>
+        <label for="tglLahir">Tanggal Lahir</label>
+        <input type="date" id="tglLahir" name="tglLahir" required />
+        <div class="error" id="errTglLahir"></div>
+      </div>
+
+      <div>
+        <label>Jenis Kelamin</label>
+        <div class="radio-group">
+          <label><input type="radio" name="jk" value="Laki-laki" required /> Laki-laki</label>
+          <label><input type="radio" name="jk" value="Perempuan" /> Perempuan</label>
+        </div>
+        <div class="error" id="errJK"></div>
+      </div>
+
+      <div>
+        <label for="statusNikah">Status Pernikahan</label>
+        <select id="statusNikah" name="statusNikah" required>
+          <option value="">-- Pilih Status --</option>
+          <option value="Belum Menikah">Belum Menikah</option>
+          <option value="Menikah">Menikah</option>
+          <option value="Duda/Janda">Duda/Janda</option>
+        </select>
+        <div class="error" id="errStatusNikah"></div>
+      </div>
+
+      <div>
+        <label for="noHP">No HP</label>
+        <input type="tel" id="noHP" name="noHP" placeholder="08xxxxxxxxxx" pattern="[0-9]+" required />
+        <div class="error" id="errNoHP"></div>
+      </div>
+
+      <div>
+        <label for="noDarurat">No Darurat (Keluarga/Teman)</label>
+        <input type="tel" id="noDarurat" name="noDarurat" placeholder="Nomor darurat" pattern="[0-9]+" required />
+        <div class="error" id="errNoDarurat"></div>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="email@domain.com" required />
+        <div class="error" id="errEmail"></div>
+      </div>
+
+      <div>
+        <label for="agama">Agama</label>
+        <select id="agama" name="agama" required>
+          <option value="">-- Pilih Agama --</option>
+          <option value="Islam">Islam</option>
+          <option value="Kristen">Kristen</option>
+          <option value="Katolik">Katolik</option>
+          <option value="Hindu">Hindu</option>
+          <option value="Buddha">Buddha</option>
+          <option value="Konghucu">Konghucu</option>
+        </select>
+        <div class="error" id="errAgama"></div>
+      </div>
+
+      <div>
+        <label for="pendidikan">Pendidikan Terakhir</label>
+        <select id="pendidikan" name="pendidikan" required>
+          <option value="">-- Pilih Pendidikan --</option>
+          <option value="SMA/SMK">SMA / SMK</option>
+          <option value="Diploma">Diploma</option>
+          <option value="Sarjana">Sarjana (S1)</option>
+          <option value="Magister">Magister (S2)</option>
+          <option value="Doktor">Doktor (S3)</option>
+        </select>
+        <div class="error" id="errPendidikan"></div>
+      </div>
+
+      <div>
+        <label for="alamat">Alamat Lengkap</label>
+        <textarea id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat lengkap" required></textarea>
+        <div class="error" id="errAlamat"></div>
+      </div>
+
+      <div>
+        <label for="keahlian">Keahlian Khusus</label>
+        <textarea id="keahlian" name="keahlian" rows="2" placeholder="Masukkan keahlian khusus jika ada (opsional)"></textarea>
+      </div>
+
+      <div>
+        <label for="pengalaman">Pengalaman Kerja</label>
+        <textarea id="pengalaman" name="pengalaman" rows="3" placeholder="Jelaskan pengalaman kerja singkat (opsional)"></textarea>
+      </div>
+
+      <div>
+        <label for="cvUpload">Upload CV (PDF/DOC)</label>
+        <input type="file" id="cvUpload" name="cvUpload" accept=".pdf,.doc,.docx" required />
+        <div class="error" id="errCV"></div>
+      </div>
+
+      <div>
+        <label for="fotoWajah">Unggah Foto Wajah (JPG/PNG)</label>
+        <input type="file" id="fotoWajah" name="fotoWajah" accept="image/jpeg, image/png" required />
+        <div class="error" id="errFoto"></div>
+      </div>
+
+      <button type="submit">Kirim Pendaftaran</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('lokerForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Clear previous errors
+      ['errNama', 'errTempatLahir', 'errTglLahir', 'errJK', 'errStatusNikah', 'errNoHP', 'errNoDarurat', 'errEmail', 'errAgama', 'errPendidikan', 'errAlamat', 'errFoto', 'errCV'].forEach(id => {
+        document.getElementById(id).textContent = '';
+      });
+
+      let valid = true;
+
+      // Validasi sederhana tiap input wajib
+      if (!form.namaLengkap.value.trim()) {
+        document.getElementById('errNama').textContent = 'Nama wajib diisi';
+        valid = false;
+      }
+      if (!form.tempatLahir.value.trim()) {
+        document.getElementById('errTempatLahir').textContent = 'Tempat lahir wajib diisi';
+        valid = false;
+      }
+      if (!form.tglLahir.value) {
+        document.getElementById('errTglLahir').textContent = 'Tanggal lahir wajib diisi';
+        valid = false;
+      }
+      if (!form.jk.value) {
+        document.getElementById('errJK').textContent = 'Jenis kelamin wajib dipilih';
+        valid = false;
+      }
+      if (!form.statusNikah.value) {
+        document.getElementById('errStatusNikah').textContent = 'Status pernikahan wajib dipilih';
+        valid = false;
+      }
+      if (!form.noHP.value.trim()) {
+        document.getElementById('errNoHP').textContent = 'Nomor HP wajib diisi';
+        valid = false;
+      }
+      if (!form.noDarurat.value.trim()) {
+        document.getElementById('errNoDarurat').textContent = 'Nomor darurat wajib diisi';
+        valid = false;
+      }
+      if (!form.email.value.trim()) {
+        document.getElementById('errEmail').textContent = 'Email wajib diisi';
+        valid = false;
+      }
+      if (!form.agama.value) {
+        document.getElementById('errAgama').textContent = 'Agama wajib dipilih';
+        valid = false;
+      }
+      if (!form.pendidikan.value) {
+        document.getElementById('errPendidikan').textContent = 'Pendidikan wajib dipilih';
+        valid = false;
+      }
+      if (!form.alamat.value.trim()) {
+        document.getElementById('errAlamat').textContent = 'Alamat wajib diisi';
+        valid = false;
+      }
+
+      // Validasi file CV
+      if (!form.cvUpload.files.length) {
+        document.getElementById('errCV').textContent = 'Upload CV wajib';
+        valid = false;
+      } else {
+        const cvFile = form.cvUpload.files[0];
+        const allowedCV = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        if (!allowedCV.includes(cvFile.type)) {
+          document.getElementById('errCV').textContent = 'Format CV harus PDF atau DOC/DOCX';
+          valid = false;
+        }
+      }
+
+      // Validasi foto wajah
+      if (!form.fotoWajah.files.length) {
+        document.getElementById('errFoto').textContent = 'Upload foto wajib';
+        valid = false;
+      } else {
+        const fotoFile = form.fotoWajah.files[0];
+        const allowedFoto = ['image/jpeg', 'image/png'];
+        if (!allowedFoto.includes(fotoFile.type)) {
+          document.getElementById('errFoto').textContent = 'Format foto harus JPG atau PNG';
+          valid = false;
+        }
+      }
+
+      if (!valid) return;
+
+      // Kalau valid, buat formData dan bisa langsung submit ke backend
+      const formData = new FormData(form);
+
+      try {
+        // Contoh: kirim ke endpoint API (ganti URL sesuai backend lu)
+        const response = await fetch('https://example.com/api/submit-loker', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) throw new Error('Gagal kirim data!');
+
+        alert('Pendaftaran berhasil dikirim!');
+        form.reset();
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
