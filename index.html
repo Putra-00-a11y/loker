@@ -213,12 +213,6 @@
         <textarea id="pengalaman" name="pengalaman" rows="3" placeholder="Jelaskan pengalaman kerja singkat (opsional)"></textarea>
       </div>
 
-      <div>
-        <label for="fotoWajah">Unggah Foto Wajah (JPG/PNG)</label>
-        <input type="file" id="fotoWajah" name="fotoWajah" accept="image/jpeg, image/png" required />
-        <div class="error" id="errFoto"></div>
-      </div>
-
       <button type="submit">Kirim Pendaftaran</button>
     </form>
   </div>
@@ -230,7 +224,7 @@
       e.preventDefault();
 
       // Clear previous errors
-      ['errNama', 'errTempatLahir', 'errTglLahir', 'errJK', 'errStatusNikah', 'errNoHP', 'errNoDarurat', 'errEmail', 'errAgama', 'errPendidikan', 'errAlamat', 'errFoto'].forEach(id => {
+      ['errNama', 'errTempatLahir', 'errTglLahir', 'errJK', 'errStatusNikah', 'errNoHP', 'errNoDarurat', 'errEmail', 'errAgama', 'errPendidikan', 'errAlamat'].forEach(id => {
         document.getElementById(id).textContent = '';
       });
 
@@ -281,20 +275,6 @@
         document.getElementById('errAlamat').textContent = 'Alamat wajib diisi';
         valid = false;
       }
-
-      // Validasi foto wajah
-      if (!form.fotoWajah.files.length) {
-        document.getElementById('errFoto').textContent = 'Upload foto wajib';
-        valid = false;
-      } else {
-        const fotoFile = form.fotoWajah.files[0];
-        const allowedFoto = ['image/jpeg', 'image/png'];
-        if (!allowedFoto.includes(fotoFile.type)) {
-          document.getElementById('errFoto').textContent = 'Format foto harus JPG atau PNG';
-          valid = false;
-        }
-      }
-
       if (!valid) return;
 
       // Kalau valid, buat formData dan bisa langsung submit ke backend
